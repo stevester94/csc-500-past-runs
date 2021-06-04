@@ -4,7 +4,7 @@ regex="avtomat_distance-([0-9]+)_learningRate-(0\.[0-9]+)_batch-([0-9]+)_epochs-
 
 dirs=$(find . -mindepth 1 -maxdepth 1 -type d)
 
-echo NAME DISTANCE LEARNING_RATE BATCH EPOCHS PATIENCE TEST_LOSS TEST_ACC VAL_LOSS VAL_ACC TOTAL_TIME_SECS
+echo NAME,DISTANCE,LEARNING_RATE,BATCH,EPOCHS,PATIENCE,TEST_LOSS,TEST_ACC,VAL_LOSS,VAL_ACC,TOTAL_TIME_SECS
 
 for d in $dirs; do
     name=$(cat $d/RESULTS | grep "Experiment name" | awk '{print $3}')
@@ -26,6 +26,6 @@ for d in $dirs; do
         exit 1
     fi
 
-    echo $name $distance $learning_rate $batch $epochs $patience $test_loss $test_acc $val_loss $val_acc $total_time_secs
+    echo $name,$distance,$learning_rate,$batch,$epochs,$patience,$test_loss,$test_acc,$val_loss,$val_acc,$total_time_secs
 
 done
