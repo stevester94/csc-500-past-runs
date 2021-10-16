@@ -128,7 +128,9 @@ cnn_ax = ax[1][0]
 cida_alpha_null_ax = ax[1][1]
 cida_alpha_sigmoid_ax = ax[1][2]
 
-# THIS WORKS
+#####################
+# mean and std across methods
+#####################
 x = df[["source_test_label_accuracy","target_test_label_accuracy","method"]]
 x = x.groupby("method").agg([np.mean, np.std])
 
@@ -142,14 +144,9 @@ averages_ax = x["source_test_label_accuracy"].plot(
     width=0.4, label="source_test_label_accuracy", alpha=0.5)
 
 
-
-
-
-
-
-
-
-
+#####################
+# Source accuracy compared between methods
+#####################
 x = df[["source_test_label_accuracy","method"]]
 x = x.groupby("method")
 # Results in 3 tuples: (<method name>, <dataframe of source_test_label_accuracy corresponding to that method>)
@@ -165,7 +162,102 @@ for group, color, pos in zip(x, ["red", "green", "blue"], [0,1,2]):
         capsize=10, rot=10, ax=bar_source_ax, position=pos, color=color, 
         width=0.2, label=key, alpha=0.7)
 bar_source_ax.legend([key for key,group in x])
+
+#####################
+# Source accuracy compared between methods
+#####################
+x = df[["target_test_label_accuracy","method"]]
+x = x.groupby("method")
+# Results in 3 tuples: (<method name>, <dataframe of source_test_label_accuracy corresponding to that method>)
+
+# Pos ranges from 0 to 1 and is the relative offset for each item
+for group, color, pos in zip(x, ["red", "green", "blue"], [0,1,2]):
+    key, group = group
+
+    print(key)
+
+    bar_target_ax = group.plot(
+        kind = "bar", legend = True, 
+        capsize=10, rot=10, ax=bar_target_ax, position=pos, color=color, 
+        width=0.2, label=key, alpha=0.7)
+bar_target_ax.legend([key for key,group in x])
+
+
+
+
+#####################
+# Source accuracy compared between methods
+#####################
+x = df[df["method"] == "cnn"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x.plot(kind="bar", ax=cnn_ax)
+
+x = df[df["method"] == "cida_alpha_sigmoid"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x.plot(kind="bar", ax=cida_alpha_sigmoid_ax)
+
+x = df[df["method"] == "cida_alpha_null"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x.plot(kind="bar", ax=cida_alpha_null_ax)
+
+# Pos ranges from 0 to 1 and is the relative offset for each item
+# for group, color, pos in zip(x, ["red", "green", "blue"], [0,1,2]):
+#     key, group = group
+
+#     print(key)
+
+#     bar_target_ax = group.plot(
+#         kind = "bar", legend = True, 
+#         capsize=10, rot=10, ax=bar_target_ax, position=pos, color=color, 
+#         width=0.2, label=key, alpha=0.7)
+# bar_target_ax.legend([key for key,group in x])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # x = df[ df["method"]=="cnn"]
