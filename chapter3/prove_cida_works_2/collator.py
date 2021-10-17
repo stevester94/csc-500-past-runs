@@ -4,6 +4,7 @@ import subprocess
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 
 def get_experiments_from_path(start_path):
     experiment_dot_json_paths = subprocess.getoutput('find {} | grep experiment.json'.format(start_path))
@@ -21,8 +22,13 @@ def get_experiments_from_path(start_path):
 #################################################################
 # Get the experiments, separate cida into null and sigmoid
 #################################################################
-cida_experiments = get_experiments_from_path("cida_1")
-cnn_experiments  = get_experiments_from_path("cnn_1")
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--cida_path', help='The path to the CIDA run')
+parser.add_argument('--cnn_path', help='The path to the CNN run')
+args = parser.parse_args()
+
+cida_experiments = get_experiments_from_path(args.cida_path)
+cnn_experiments  = get_experiments_from_path(args.cnn_path)
 
 cida_alpha_null_experiments = [e for e in cida_experiments if e["parameters"]["alpha"] == "null"]
 cida_alpha_sigmoid_experiments = [e for e in cida_experiments if e["parameters"]["alpha"] == "sigmoid"]
@@ -103,7 +109,7 @@ import pandas as pd  # This is always assumed but is included here as an introdu
 
 df = pd.DataFrame.from_dict(exp)
 
-fig,ax = plt.subplots(2,3)
+fig,ax = plt.subplots(3,3)
 averages_ax = ax[0][0]
 bar_source_ax = ax[0][1]
 bar_target_ax = ax[0][2]
@@ -198,4 +204,11 @@ cida_alpha_null_ax.set_title("CIDA Alpha null Accuracies")
 cida_alpha_null_ax.get_xaxis().set_visible(False)
 cida_alpha_null_ax.set_ylim([0,1])
 
-plt.show()
+
+# import seaborn as sns
+# muh_ax = ax[0][0]
+
+# x = df[]
+
+
+# plt.show()
