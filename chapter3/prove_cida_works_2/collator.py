@@ -74,8 +74,8 @@ exp = []
 exp.extend([
     {
         "seed": e["parameters"]["seed"],
-        "source_test_label_accuracy": e["results"]["source_test_label_accuracy"],
-        "target_test_label_accuracy": e["results"]["target_test_label_accuracy"],
+        "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
+        "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cnn",
     } for e in cnn_experiments
 ])
@@ -83,8 +83,8 @@ exp.extend([
 exp.extend([
     {
         "seed": e["parameters"]["seed"],
-        "source_test_label_accuracy": e["results"]["source_test_label_accuracy"],
-        "target_test_label_accuracy": e["results"]["target_test_label_accuracy"],
+        "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
+        "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cida_alpha_null",
     } for e in cida_alpha_null_experiments
 ])
@@ -92,8 +92,8 @@ exp.extend([
 exp.extend([
     {
         "seed": e["parameters"]["seed"],
-        "source_test_label_accuracy": e["results"]["source_test_label_accuracy"],
-        "target_test_label_accuracy": e["results"]["target_test_label_accuracy"],
+        "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
+        "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cida_alpha_sigmoid",
     } for e in cida_alpha_sigmoid_experiments
 ])
@@ -116,17 +116,17 @@ fig.suptitle("n={} per method".format(len(cnn_experiments)))
 #####################
 # mean and std across methods
 #####################
-x = df[["source_test_label_accuracy","target_test_label_accuracy","method"]]
+x = df[["source_val_label_accuracy","target_val_label_accuracy","method"]]
 x = x.groupby("method").agg([np.mean, np.std])
 
-averages_ax = x["target_test_label_accuracy"].plot(
+averages_ax = x["target_val_label_accuracy"].plot(
     kind = "bar", y = "mean", legend = True, yerr="std",
     capsize=10, rot=10, ax=averages_ax, position=0, color="red",
-    width=0.2, label="target_test_label_accuracy", alpha=0.5)
-averages_ax = x["source_test_label_accuracy"].plot(
+    width=0.2, label="target_val_label_accuracy", alpha=0.5)
+averages_ax = x["source_val_label_accuracy"].plot(
     kind = "bar", y = "mean", legend = True, yerr="std",
     capsize=10, rot=10, ax=averages_ax, position=1, color="green",
-    width=0.2, label="source_test_label_accuracy", alpha=0.5)
+    width=0.2, label="source_val_label_accuracy", alpha=0.5)
 
 averages_ax.set_title("Mean and StdDev by Method")
 averages_ax.set_ylim([0,1])
@@ -134,9 +134,9 @@ averages_ax.set_ylim([0,1])
 #####################
 # Source accuracy compared between methods
 #####################
-x = df[["source_test_label_accuracy","method"]]
+x = df[["source_val_label_accuracy","method"]]
 x = x.groupby("method")
-# Results in 3 tuples: (<method name>, <dataframe of source_test_label_accuracy corresponding to that method>)
+# Results in 3 tuples: (<method name>, <dataframe of source_val_label_accuracy corresponding to that method>)
 
 # Pos ranges from 0 to 1 and is the relative offset for each item
 for group, color, pos in zip(x, ["red", "green", "blue"], [0,1,2]):
@@ -156,9 +156,9 @@ bar_source_ax.set_ylim([0,1])
 #####################
 # Target accuracy compared between methods
 #####################
-x = df[["target_test_label_accuracy","method"]]
+x = df[["target_val_label_accuracy","method"]]
 x = x.groupby("method")
-# Results in 3 tuples: (<method name>, <dataframe of source_test_label_accuracy corresponding to that method>)
+# Results in 3 tuples: (<method name>, <dataframe of source_val_label_accuracy corresponding to that method>)
 
 # Pos ranges from 0 to 1 and is the relative offset for each item
 for group, color, pos in zip(x, ["red", "green", "blue"], [0,1,2]):
@@ -180,19 +180,19 @@ bar_target_ax.set_xlim([-1,len(cnn_experiments)+1])
 #####################
 # Source accuracy compared between methods
 #####################
-x = df[df["method"] == "cnn"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x = df[df["method"] == "cnn"][["target_val_label_accuracy", "source_val_label_accuracy"]]
 x.plot(kind="bar", ax=cnn_ax)
 cnn_ax.set_title("CNN Accuracies")
 cnn_ax.get_xaxis().set_visible(False)
 cnn_ax.set_ylim([0,1])
 
-x = df[df["method"] == "cida_alpha_sigmoid"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x = df[df["method"] == "cida_alpha_sigmoid"][["target_val_label_accuracy", "source_val_label_accuracy"]]
 x.plot(kind="bar", ax=cida_alpha_sigmoid_ax)
 cida_alpha_sigmoid_ax.set_title("CIDA Alpha sigmoid Accuracies")
 cida_alpha_sigmoid_ax.get_xaxis().set_visible(False)
 cida_alpha_sigmoid_ax.set_ylim([0,1])
 
-x = df[df["method"] == "cida_alpha_null"][["target_test_label_accuracy", "source_test_label_accuracy"]]
+x = df[df["method"] == "cida_alpha_null"][["target_val_label_accuracy", "source_val_label_accuracy"]]
 x.plot(kind="bar", ax=cida_alpha_null_ax)
 cida_alpha_null_ax.set_title("CIDA Alpha null Accuracies")
 cida_alpha_null_ax.get_xaxis().set_visible(False)
