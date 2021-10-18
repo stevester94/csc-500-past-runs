@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 6801,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.8214285714285714,
+    "source_test_label_loss": 0.5208071831500891,
+    "target_test_label_accuracy": 0.855,
+    "target_test_label_loss": 0.5064414480670554,
+    "source_val_label_accuracy": 0.8080952380952381,
+    "source_val_label_loss": 0.531360124096726,
+    "target_val_label_accuracy": 0.8514102564102564,
+    "target_val_label_loss": 0.505298739085432,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 32.68430233001709
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.65578276460821,
+      2.451048019644502,
+      1.7957590454584593,
+      1.4774290903822167,
+      1.28317057931578,
+      1.1820736016545976,
+      1.0914526190850642,
+      1.0227775117019555,
+      0.9857314600572957,
+      0.9482957616254881,
+      0.9349256068855137,
+      0.8900650611945561,
+      0.8715019489263559,
+      0.8366380864149564,
+      0.8090578186047541,
+      0.7949683906196,
+      0.7856383474616261,
+      0.7644651547654883,
+      0.7613890991582499,
+      0.7371136410669847
+    ],
+    "val_label_loss": [
+      2.6073292674440327,
+      2.0421236139355283,
+      1.428756255092043,
+      1.183866428606438,
+      1.0836283149141255,
+      0.9374975887211886,
+      0.9152323567506039,
+      0.8058877135768081,
+      0.7405486486174844,
+      0.9440976236805771,
+      0.7670887654477899,
+      0.6673822402954102,
+      0.639494108431267,
+      0.6463497190764456,
+      0.6086287046923782,
+      0.5771475036938986,
+      0.5826279358430342,
+      0.5503451914498301,
+      0.573924127853278,
+      0.531144091577241
+    ]
+  }
+}

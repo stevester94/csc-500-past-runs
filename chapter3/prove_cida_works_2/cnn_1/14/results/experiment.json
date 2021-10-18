@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 13309,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.7547619047619047,
+    "source_test_label_loss": 0.642860983357285,
+    "target_test_label_accuracy": 0.7838461538461539,
+    "target_test_label_loss": 0.628434389341073,
+    "source_val_label_accuracy": 0.753095238095238,
+    "source_val_label_loss": 0.6453720511812152,
+    "target_val_label_accuracy": 0.7937179487179488,
+    "target_val_label_loss": 0.6254306034963639,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 32.8728084564209
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.6647786350993368,
+      2.553419744813597,
+      2.0160222200604228,
+      1.5933458294187273,
+      1.425407454564974,
+      1.3215071644101823,
+      1.2796014500902844,
+      1.1850535753485445,
+      1.1346144571706847,
+      1.0876712013374676,
+      1.0558077812968911,
+      1.0499748788870775,
+      0.9977897970707386,
+      0.9522108907823439,
+      0.9649213939518123,
+      0.9437428275486092,
+      0.940282406745019,
+      0.8847745444093432,
+      0.879078884403427,
+      0.8593446581394641
+    ],
+    "val_label_loss": [
+      2.63640824953715,
+      2.4593410419695303,
+      1.5641288396083948,
+      1.3021145878416118,
+      1.4347481872096206,
+      1.0978626590786558,
+      1.0045231743292375,
+      1.0271552349581863,
+      0.8867290182547136,
+      0.8599249991503629,
+      1.3479873700575395,
+      1.0088494257493452,
+      0.7948520761547666,
+      0.8244123260180155,
+      0.8104161565954034,
+      0.8428220116730892,
+      0.7139216065406799,
+      0.770514757344217,
+      0.6455039670973113,
+      0.6589866117997603
+    ]
+  }
+}

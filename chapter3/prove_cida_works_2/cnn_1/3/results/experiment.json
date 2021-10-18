@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 1234,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.7585714285714286,
+    "source_test_label_loss": 0.559184031053023,
+    "target_test_label_accuracy": 0.7821794871794872,
+    "target_test_label_loss": 0.535750750635491,
+    "source_val_label_accuracy": 0.7509523809523809,
+    "source_val_label_loss": 0.5671764558011835,
+    "target_val_label_accuracy": 0.775,
+    "target_val_label_loss": 0.542271469460159,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 33.0936598777771
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.661288383719209,
+      2.4254781983115454,
+      1.6897417779092665,
+      1.4109070602949563,
+      1.2637341332125973,
+      1.144897754316206,
+      1.0945258163786553,
+      1.0159912662846702,
+      0.9986147168394807,
+      0.9477404948178824,
+      0.9259801344438032,
+      0.8937763095676124,
+      0.868646337614431,
+      0.8670917900351734,
+      0.8234479071257951,
+      0.8189235561853879,
+      0.7995025654891869,
+      0.7872293626333212,
+      0.7797864660040125,
+      0.7642592509071549
+    ],
+    "val_label_loss": [
+      2.6095648823362407,
+      1.8916249564199736,
+      1.3879785320975564,
+      1.1430685592420173,
+      0.9951723687576525,
+      0.8982289812781594,
+      0.8261952779509805,
+      0.7780087210915305,
+      0.8346729116006331,
+      0.694022252704158,
+      0.6796453956401709,
+      0.7070284648375078,
+      0.6198533737298214,
+      0.6139169515985431,
+      0.6880585731882037,
+      0.6523524089293047,
+      0.6105571768500588,
+      0.8275719248887264,
+      0.5892279473218051,
+      0.5670685777158448
+    ]
+  }
+}

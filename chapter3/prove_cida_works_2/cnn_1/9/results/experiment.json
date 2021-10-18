@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 16044,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.8261904761904761,
+    "source_test_label_loss": 0.4963571700182828,
+    "target_test_label_accuracy": 0.8607692307692307,
+    "target_test_label_loss": 0.47104014773837855,
+    "source_val_label_accuracy": 0.8319047619047619,
+    "source_val_label_loss": 0.4920121440381715,
+    "target_val_label_accuracy": 0.8561538461538462,
+    "target_val_label_loss": 0.47807561080963884,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 32.856778621673584
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.646315696951631,
+      2.285351582161792,
+      1.6363242260821453,
+      1.3094396149957335,
+      1.169234634219826,
+      1.0309399637308987,
+      0.968510125364576,
+      0.9140692330026007,
+      0.8710849103215453,
+      0.8433441008840289,
+      0.810743987173229,
+      0.7942358479871379,
+      0.7793417781978459,
+      0.7484849683650128,
+      0.7310850175170155,
+      0.7115305495726598,
+      0.7139198547833926,
+      0.6927176191435231,
+      0.7077353650873358,
+      0.6768330664603741
+    ],
+    "val_label_loss": [
+      2.56353641278816,
+      1.8124712199875803,
+      1.3937857801263982,
+      1.068695635506601,
+      0.9495896516424237,
+      0.8325421304413767,
+      0.8222060691226613,
+      0.7054402882402594,
+      0.6644740375605497,
+      0.6318149855642607,
+      0.5997002106724363,
+      0.6787645636182843,
+      0.5749667864857297,
+      0.623044364380114,
+      0.6551421790411978,
+      0.5303485962477598,
+      0.4923510488235589,
+      0.4935688791853009,
+      0.6019493016329679,
+      0.6825064818064371
+    ]
+  }
+}

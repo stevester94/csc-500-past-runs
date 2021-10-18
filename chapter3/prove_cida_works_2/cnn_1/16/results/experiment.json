@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 12140,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.7730952380952381,
+    "source_test_label_loss": 0.5709503852959835,
+    "target_test_label_accuracy": 0.7997435897435897,
+    "target_test_label_loss": 0.5479208524109888,
+    "source_val_label_accuracy": 0.7790476190476191,
+    "source_val_label_loss": 0.5591934485868975,
+    "target_val_label_accuracy": 0.8,
+    "target_val_label_loss": 0.5494375204453703,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 33.07499575614929
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.6650969239024374,
+      2.387960872866891,
+      1.6739654014636944,
+      1.411097725490471,
+      1.285331281748685,
+      1.156395927652136,
+      1.0831921750848943,
+      1.0484291779530512,
+      1.0096451942022744,
+      0.9784954565686065,
+      0.9557560926133936,
+      0.912192754544221,
+      0.9041543037860424,
+      0.859591499164507,
+      0.8467326470009693,
+      0.825063635002483,
+      0.8165679446288517,
+      0.7953994370900191,
+      0.7911658151583238,
+      0.7689536867977737
+    ],
+    "val_label_loss": [
+      2.6078830776792583,
+      1.8232283483852039,
+      1.3615021669503413,
+      1.3165330959088875,
+      1.0940620971448494,
+      0.8922881502093691,
+      0.9092034553036545,
+      0.798484636075569,
+      1.1753409884192727,
+      0.7656184254270612,
+      0.8755175146189603,
+      0.6698347185597275,
+      0.6541776729352546,
+      0.8468226609808026,
+      0.6298915563207684,
+      0.6738927093419161,
+      0.7315132744384535,
+      0.5744222637378809,
+      0.7297078750350259,
+      0.5593200569803064
+    ]
+  }
+}
