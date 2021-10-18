@@ -83,6 +83,7 @@ exp.extend([
         "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
         "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cnn",
+        "val_label_loss": e["history"]["val_label_loss"],
     } for e in cnn_experiments
 ])
 
@@ -92,6 +93,8 @@ exp.extend([
         "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
         "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cida_alpha_null",
+        "source_val_label_loss": e["history"]["source_val_label_loss"],
+        "target_val_label_loss": e["history"]["source_val_label_loss"],
     } for e in cida_alpha_null_experiments
 ])
 
@@ -101,6 +104,8 @@ exp.extend([
         "source_val_label_accuracy": e["results"]["source_val_label_accuracy"],
         "target_val_label_accuracy": e["results"]["target_val_label_accuracy"],
         "method":"cida_alpha_sigmoid",
+        "source_val_label_loss": e["history"]["source_val_label_loss"],
+        "target_val_label_loss": e["history"]["source_val_label_loss"],
     } for e in cida_alpha_sigmoid_experiments
 ])
 
@@ -206,9 +211,29 @@ cida_alpha_null_ax.set_ylim([0,1])
 
 
 # import seaborn as sns
-# muh_ax = ax[0][0]
+# muh_ax = ax[2][0]
+
+# x = df[["seed", "source_val_label_loss"]][df["method"] == "cida_alpha_null"]
+# x = x.explode("source_val_label_loss")
+# x.groupby("seed").plot(kind="line")
+# print(x)
+
+plt.show()
+
+# x = x.groupby(["method", "seed"])["source_val_label_loss"]
+# x.plot(kind="line", ax=muh_ax)
+
+
+# for a in x:
+#     print(a[1]["source_val_label_loss"])
+#     print("====")
+
+# print(list(x))
+
+# df = sns.load_dataset("penguins")
+# sns.pairplot(df, hue="method")
 
 # x = df[]
 
 
-# plt.show()
+
