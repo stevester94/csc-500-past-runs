@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 19872,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.7978571428571428,
+    "source_test_label_loss": 0.5884540785442699,
+    "target_test_label_accuracy": 0.8221794871794872,
+    "target_test_label_loss": 0.5729278057325081,
+    "source_val_label_accuracy": 0.7838095238095238,
+    "source_val_label_loss": 0.6048174247597203,
+    "target_val_label_accuracy": 0.8170512820512821,
+    "target_val_label_loss": 0.5798776022723464,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 32.52744460105896
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.665827944681242,
+      2.5136854323473843,
+      1.8191526114166556,
+      1.5037339538722843,
+      1.349465213812791,
+      1.2534605063401258,
+      1.1637364827193224,
+      1.0974733837239155,
+      1.048107155344703,
+      1.020580200405864,
+      0.9933563699195911,
+      0.9682065554253467,
+      0.9319802526529734,
+      0.8949467152744145,
+      0.8953313680438252,
+      0.8915922223747551,
+      0.85169687054374,
+      0.8422785838703056,
+      0.8124614617267212,
+      0.8004497657348584
+    ],
+    "val_label_loss": [
+      2.6223140846599233,
+      2.203975518544515,
+      1.4572391618381848,
+      1.338742277838967,
+      1.315194541757757,
+      0.9902643416867112,
+      0.9225919102177476,
+      0.9454054814396482,
+      0.7991517420971033,
+      0.89804474512736,
+      0.8270517750219866,
+      0.8096814011082505,
+      0.7031553694696138,
+      0.7680325851295934,
+      0.7946907336061652,
+      0.630901985096209,
+      0.660571605870218,
+      0.6701969359860276,
+      0.6914774703257012,
+      0.6049574487137072
+    ]
+  }
+}

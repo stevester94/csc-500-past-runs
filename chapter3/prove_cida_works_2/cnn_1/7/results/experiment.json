@@ -1,0 +1,202 @@
+{
+  "experiment_name": "Manual Experiment",
+  "parameters": {
+    "experiment_name": "Manual Experiment",
+    "lr": 0.0001,
+    "n_epoch": 20,
+    "batch_size": 128,
+    "patience": 10,
+    "seed": 1445,
+    "device": "cuda",
+    "source_snrs": [
+      -18,
+      -12,
+      -6,
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_snrs": [
+      2,
+      4,
+      8,
+      10,
+      -20,
+      14,
+      16,
+      -16,
+      -14,
+      -10,
+      -8,
+      -4,
+      -2
+    ],
+    "source_num_unique_examples": 250,
+    "target_num_unique_examples": 250,
+    "normalize_domain": true,
+    "x_net": [
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 2,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 1,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Conv1d",
+        "kargs": {
+          "in_channels": 50,
+          "out_channels": 50,
+          "kernel_size": 7,
+          "stride": 2,
+          "padding": 0
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Flatten",
+        "kargs": {}
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 2900,
+          "out_features": 256
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Dropout",
+        "kargs": {
+          "p": 0.5
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 256,
+          "out_features": 80
+        }
+      },
+      {
+        "class": "ReLU",
+        "kargs": {
+          "inplace": true
+        }
+      },
+      {
+        "class": "Linear",
+        "kargs": {
+          "in_features": 80,
+          "out_features": 16
+        }
+      }
+    ]
+  },
+  "results": {
+    "source_test_label_accuracy": 0.815,
+    "source_test_label_loss": 0.5484700925422438,
+    "target_test_label_accuracy": 0.821923076923077,
+    "target_test_label_loss": 0.5361877450200377,
+    "source_val_label_accuracy": 0.8126190476190476,
+    "source_val_label_loss": 0.5458699437704954,
+    "target_val_label_accuracy": 0.8274358974358974,
+    "target_val_label_loss": 0.527760632213999,
+    "total_epochs_trained": 20,
+    "total_experiment_time_secs": 33.053237199783325
+  },
+  "history": {
+    "epoch_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "train_label_loss": [
+      2.6594419370998037,
+      2.3471812094960893,
+      1.6412037200741953,
+      1.3429685614325784,
+      1.1833272460219149,
+      1.0775730025458645,
+      1.0014720764253047,
+      0.9464247795668516,
+      0.9251679766487766,
+      0.8945305103605444,
+      0.8639627571229811,
+      0.8325707591199255,
+      0.8220052904896922,
+      0.8030420704321428,
+      0.7772681705363385,
+      0.783349034074065,
+      0.7697977597837324,
+      0.7276719750522019,
+      0.7402693644746557,
+      0.712558492244064
+    ],
+    "val_label_loss": [
+      2.5883316632473106,
+      1.8026425079865889,
+      1.3117614876140247,
+      1.1395439487515073,
+      0.9401747584342957,
+      0.8507135673002764,
+      0.8268377401612022,
+      0.7079313451593573,
+      0.6878761089209354,
+      1.152554244706125,
+      0.689808574589816,
+      0.639223266731609,
+      0.6159715562155752,
+      0.5640054020014676,
+      0.5766149813478644,
+      0.7735672629240787,
+      0.5914340326280305,
+      0.5460981645367362,
+      0.5715537342158231,
+      0.6691069043043888
+    ]
+  }
+}
